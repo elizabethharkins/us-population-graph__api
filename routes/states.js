@@ -57,7 +57,7 @@ router.get("/", function (req, res) {
 });
 
 // proxy server; server is a proxy for datausa
-router.post("/", async function(req, res) {
+router.post("/", function(req, res) {
 
 	const stateToCheck = req.body.name;
 	console.log(stateToCheck);
