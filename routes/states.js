@@ -77,6 +77,23 @@ router.post("/", function(req, res) {
 
 			selectedStateData = results;
 			res.status(201).json(results);
+
+			// chart config, initial
+			const add_X_Values = (arr) => {
+			  	return arr.map( (obj, index) => {
+			    	return Object.assign({}, obj, { x: index });
+			  	});
+			};
+
+			const chartDataInput = 
+				results
+					.sort((a, b) => (a.year > b.year) ? 1 : -1)
+					.map(item => { return { label: item.year.toString(), y: item.population } });
+			const chartDataOutput = add_X_Values(chartDataInput);
+			console.log(chartDataOutput);
+			console.log(`Chart config for ${stateToCheck} is above.`);
+
+
 		}
 		catch(error) {
 			console.log(error)
